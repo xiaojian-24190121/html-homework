@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册页面</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>         
+  <header>
+    <h1>用户注册</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">注册须知</th>
+                </tr>
+                <tr>
+                    <th>条目</th>
+                    <th>说明</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <tr>
+                    <td>账号安全</td>
+                    <td>请保管好账号密码</td>
+                    <td rowspan="2">一经注册，用户名不可修改</td>
+                    </tr>
+                    <tr>
+                        <td>信息真实性</td>
+                        <td>填写真实信息便于找回账号</td>
+                    </tr>
+            </tbody>
+        </table> 
+        <h3>注册步骤</h3>
+        <ol>
+            <li>填写个人基础信息</li>
+            <li>选择爱好与所在城市</li>
+            <li>上传头像并填写简历</li>
+            <li>核对信息提交注册</li>
+        </ol>
+        <h3>注册注意事项</h3>
+            <ul>
+                <li>用户名不能为空</li>
+                <li>密码长度6-16位</li>
+                <li>手机号必须为11位数字</li>
+            </ul>
+            <form id="registerForm">
+                <p>
+                    <label for="username">用户名:</label>
+                    <input type="text"name="username" id="username" required>
+                </p>
+                <p>
+                    <label for="password">密码:</label>
+                    <input type="password" name="password" id="password" placeholder="6-16位字符" pattern=".{6,16}" required>
+                </p>
+                <p>
+                    <label for="confirmpassword">确认密码:</label>
+                    <input type="password" name="confirmPassword" id="confirmpassword" required>
+                </p>
+                <p>
+                    性别:
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">男</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">女</label>
+                </p>
+                <p>
+                    <label for="birthday">出生日期：</label>
+                    <input type="date" name="birthday" id="birthday">
+                    </p>
+                <p>
+                   <label for="phone">手机号：</label>
+                   <input type="tel" name="phone" id="phone" required pattern="[0-9]{11}">
+                   </p>
+                   <p>
+                    兴趣爱好：
+                    <input type="checkbox" name="hobby" value="sport" id="sport">
+                    <label for="sport">打篮球</label>
+                    <input type="checkbox" name="hobby" value="game" id="game">
+                    <label for="game">玩游戏</label>
+                    <input type="checkbox" name="hobby" value="music" id="music">
+                    <label for="music">听音乐</label>
+                   </p>
+                   <p>
+                    <label for="avatar">头像上传：</label>
+                    <input type="file" name="avatar" accept="image/*" multiple>
+                   </p>
+                   <p>
+                    <label for="city">所在城市</label>
+                    <select name="city" id="city">
+                        <option value="changsha" selected>长沙</option>
+                        <option value="chongqing">重庆</option>
+                        <option value="beijing">北京</option>
+                    </select>
+                   </p>
+                   <p>
+                    <label for="bio">个人简介:</label>
+                    <textarea name="bio" rows="4" cols="50"></textarea>
+                   </p>
+                   <p>
+                    <button type="submit">注册</button>
+                    <button type="reset">重置</button>
+                   </p>
+                   </form>
+                   </main>
+                   <footer>
+                    <p>@用户注册系统 版权所有</p>
+                   </footer>
+                   <script>
+                    const form = document.getElementById('registerForm');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(!form.reportValidity()){
+    return;
+  }
+  let pwd = document.getElementById('password').value.trim();
+  let repwd = document.getElementById('confirmpassword').value.trim();
+  if(pwd !== repwd){
+    alert('两次输入的密码不一致！');
+    return;
+  }
+  const formData = new FormData(form);
+  const dataObj = Object.fromEntries(formData);
+  console.log('表单数据：',dataObj);
+  alert('注册成功，打开控制台查看数据');
+})
+                   </script>
+</body>
+</html>
